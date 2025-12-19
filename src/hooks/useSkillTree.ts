@@ -15,22 +15,23 @@ export function useSkillTree(skillsData: Skill[], tiersData: TierInfo[]) {
     desbloquearSkill
   } = useSkillStore();
 
-const sistemaTiers = useMemo(
-  () => new SistemaTiers(skillsData, tiersData),
-  [skillsData, tiersData]
-);
+  // ✅ Usar useMemo para objetos que são dependencies
+  const sistemaTiers = useMemo(
+    () => new SistemaTiers(skillsData, tiersData),
+    [skillsData, tiersData]
+  );
 
-const sistemaLocks = useMemo(
-  () => new SistemaLocks(statsJogador, tpAtual),
-  [statsJogador, tpAtual]
-);
+  const sistemaLocks = useMemo(
+    () => new SistemaLocks(statsJogador, tpAtual),
+    [statsJogador, tpAtual]
+  );
 
-const sistemaSave = useMemo(
-  () => new SistemaSave(),
-  []
-);
+  const sistemaSave = useMemo(
+    () => new SistemaSave(),
+    []
+  );
 
-  // ✅ useCallback evita dependencies infinitas
+  // ✅ useCallback com deps corretas (agora estáveis)
   const inicializarJogo = useCallback(() => {
     const dadosCarregados = sistemaSave.carregarProgresso();
     if (dadosCarregados) {
@@ -46,19 +47,18 @@ const sistemaSave = useMemo(
     inicializarJogo();
   }, [inicializarJogo]);
 
-const tentarDesbloquearSkill = useCallback((skillId: string) => {
-  const skill = skills.find(s => s.id === skillId);
-  if (!skill) return;
+  const tentarDesbloquearSkill = useCallback((skillId: string) => {
+    const skill = skills.find(s => s.id === skillId);
+    if (!skill) return;
 
-  const resultado = sistemaLocks.tentar_desbloquear(skill);
-  if (resultado.sucesso) {
-    desbloquearSkill(skillId);
-    sistemaSave.salvarProgresso(statsJogador, tpAtual);
-  }
+    const resultado = sistemaLocks.tentar_desbloquear(skill);
+    if (resultado.sucesso) {
+      desbloquearSkill(skillId);
+      sistemaSave.salvarProgresso(statsJogador, tpAtual);
+    }
 
-  return resultado;
-}, [skills, sistemaLocks, desbloquearSkill, sistemaSave, statsJogador, tpAtual]);
-
+    return resultado;
+  }, [skills, sistemaLocks, desbloquearSkill, sistemaSave, statsJogador, tpAtual]);
 
   return {
     sistemaTiers,
