@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { SkillTree } from './components/SkillTree';
 import { useSkillStore } from './stores/skillStore';
 import type { Skill } from './types';
-import { allSkills } from './data/tiers';
+import { allSkills } from './data';
 import { SistemaLocks } from './modules/SistemaLocks';
 import { SistemaSave } from './modules/SistemaSave';
 import './styles/globals.css';
