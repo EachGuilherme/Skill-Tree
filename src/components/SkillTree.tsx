@@ -8,6 +8,8 @@ import { useSkills } from '../hooks/useSkills';
 import { useLayouts } from '../hooks/useLayouts';
 import { usePanZoom } from '../hooks/usePanZoom';
 import { SistemaLocks } from '../modules/SistemaLocks';
+import { SistemaTiers } from '../modules/SistemaTiers';
+import { tiers } from '../data';
 import type { Skill } from '../types';
 import '../styles/components.css';
 
@@ -32,20 +34,35 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
     resetView();
   }, [resetView]);
 
+  // 💯 Criar instância de SistemaTiers
+  const sistemaTiers = useMemo(() => {
+    if (!skills || skills.length === 0) {
+      return new SistemaTiers([], tiers);
+    }
+    const sistema = new SistemaTiers(skills, tiers);
+    // Carregar skills desbloqueadas
+    const skillsDesbloqueadas = skills
+      .filter(s => s.desbloqueada)
+      .map(s => s.id);
+    sistema.carregarSkillsDesbloqueadas(skillsDesbloqueadas);
+    return sistema;
+  }, [skills]);
+
   // ✅ Calcular requisitos para exibir
   const requisitosSkill = useMemo(() => {
     if (!hoveredSkill) return null;
     
-    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills);
+    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills, sistemaTiers);
     const resultado = sistemaLocks.verificar_requisitos(hoveredSkill);
     
     return {
       tpOK: resultado.temTP,
       statsOK: resultado.statsOK,
       prereqOK: resultado.prereqOK,
+      tierOK: resultado.tierOK,
       requisitos: resultado.requisitos
     };
-  }, [hoveredSkill, statsJogador, tpAtual, skills]);
+  }, [hoveredSkill, statsJogador, tpAtual, skills, sistemaTiers]);
 
   return (
     <div className="skill-tree-container">
@@ -64,6 +81,14 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
                 <span className="requisito-label">Custo TP:</span>
                 <span className={`requisito-valor ${requisitosSkill?.tpOK ? 'ok' : 'nao-ok'}`}>
                   {hoveredSkill.custoTP}
+                </span>
+              </div>
+
+              {/* Tier Requirement */}
+              <div className="requisito-item">
+                <span className="requisito-label">Tier:</span>
+                <span className={`requisito-valor ${requisitosSkill?.tierOK ? 'ok' : 'nao-ok'}`}>
+                  {requisitosSkill?.tierOK ? `✅ Tier ${hoveredSkill.tier}` : `🔒 Tier ${hoveredSkill.tier}`}
                 </span>
               </div>
 
@@ -97,7 +122,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
                       <div key={prereqId} className="requisito-item">
                         <span className="stat-name">{prereqSkill.nome}:</span>
                         <span className={`requisito-valor ${prereqSkill.desbloqueada ? 'ok' : 'nao-ok'}`}>
-                          {prereqSkill.desbloqueada ? '✓ Desbloqueada' : '✕ Bloqueada'}
+                          {prereqSkill.desbloqueada ? '✓ Desbloqueada' : '✗ Bloqueada'}
                         </span>
                       </div>
                     );
@@ -112,6 +137,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
       <div className="canvas-container">
         <Canvas
           skills={skillsComPosicao}
+          allSkills={skills}
           onSkillClick={onSkillClick}
           onSkillHover={setHoveredSkill}
         />
