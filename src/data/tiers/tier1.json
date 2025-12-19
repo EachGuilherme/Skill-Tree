@@ -1,0 +1,42 @@
+[
+  {
+    "id": "golpe-devastador",
+    "nome": "Golpe Devastador",
+    "descricao": "Um ataque poderoso",
+    "tier": 1,
+    "custoTP": 500,
+    "custoStats": { "STR": 20 },
+    "prereqSkills": ["ataque-basico"],
+    "desbloqueada": false
+  },
+  {
+    "id": "escudo-magico",
+    "nome": "Escudo Mágico",
+    "descricao": "Proteção mágica contra danos",
+    "tier": 1,
+    "custoTP": 500,
+    "custoStats": { "MND": 15 },
+    "prereqSkills": ["defesa-basica", "magia-fogo"],
+    "desbloqueada": false
+  },
+  {
+    "id": "combo-elemento",
+    "nome": "Combo de Elementos",
+    "descricao": "Combinar magia de fogo e gelo",
+    "tier": 1,
+    "custoTP": 600,
+    "custoStats": { "MND": 25 },
+    "prereqSkills": ["magia-fogo", "magia-gelo"],
+    "desbloqueada": false
+  },
+  {
+    "id": "foco-absoluto",
+    "nome": "Foco Absoluto",
+    "descricao": "Aumentar concentração e precisão",
+    "tier": 1,
+    "custoTP": 400,
+    "custoStats": { "WIL": 20 },
+    "prereqSkills": ["ataque-basico"],
+    "desbloqueada": false
+  }
+]
