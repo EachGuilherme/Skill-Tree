@@ -1,0 +1,160 @@
+/* Skill Tree Container */
+.skill-tree-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  padding: 20px;
+  background: var(--color-bg);
+}
+
+.sidebar {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #333;
+  overflow-y: auto;
+}
+
+.tier-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tier-selector h3 {
+  color: var(--color-success);
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.tier-btn {
+  padding: 10px 15px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tier-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-success);
+  transform: translateX(4px);
+}
+
+.tier-btn.ativo {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-bg);
+}
+
+.skill-info {
+  padding: 15px;
+  background: rgba(50, 184, 198, 0.1);
+  border-left: 3px solid var(--color-success);
+  border-radius: 4px;
+  min-height: 100px;
+}
+
+.skill-info h4 {
+  color: var(--color-success);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.skill-info p {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+/* Canvas Container */
+.canvas-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border-radius: 8px;
+  border: 1px solid #333;
+  overflow: hidden;
+  position: relative;
+}
+
+svg {
+  cursor: grab;
+  flex: 1;
+}
+
+svg:active {
+  cursor: grabbing;
+}
+
+.skill-circle {
+  transition: filter 0.2s ease;
+}
+
+.skill-circle:hover {
+  filter: brightness(1.2);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid #333;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.control-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.control-group label {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  min-width: 100px;
+}
+
+.control-group button {
+  padding: 6px 12px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: 1px solid var(--color-success);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.control-group button:hover {
+  background: var(--color-success);
+  color: var(--color-bg);
+}
+
+.control-group select {
+  padding: 6px 10px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: 1px solid var(--color-success);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.control-group select:focus {
+  outline: none;
+  background: var(--color-success);
+  color: var(--color-bg);
+}

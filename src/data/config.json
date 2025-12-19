@@ -1,0 +1,14 @@
+{
+  "CANVAS_WIDTH": 2400,
+  "CANVAS_HEIGHT": 1600,
+  "TIERS_TOTAL": 5,
+  "TP_INICIAL": 100000,
+  "COLORS": {
+    "background": "#1a1a2e",
+    "surface": "#16213e",
+    "primary": "#0f3460",
+    "success": "#32b8c6",
+    "warning": "#e68c47",
+    "error": "#c01547"
+  }
+}

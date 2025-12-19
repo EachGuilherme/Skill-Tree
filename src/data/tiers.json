@@ -1,0 +1,40 @@
+[
+  {
+    "numero": 0,
+    "nome": "Iniciante",
+    "descricao": "Habilidades básicas e fundamentais",
+    "requisitos": {}
+  },
+  {
+    "numero": 1,
+    "nome": "Intermediário",
+    "descricao": "Habilidades intermediárias",
+    "requisitos": {
+      "tpMinimo": 10000
+    }
+  },
+  {
+    "numero": 2,
+    "nome": "Avançado",
+    "descricao": "Habilidades avançadas",
+    "requisitos": {
+      "tpMinimo": 30000
+    }
+  },
+  {
+    "numero": 3,
+    "nome": "Expert",
+    "descricao": "Habilidades de especialista",
+    "requisitos": {
+      "tpMinimo": 60000
+    }
+  },
+  {
+    "numero": 4,
+    "nome": "Lendário",
+    "descricao": "Habilidades lendárias e supremas",
+    "requisitos": {
+      "tpMinimo": 90000
+    }
+  }
+]
