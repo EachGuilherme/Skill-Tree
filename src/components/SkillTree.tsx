@@ -14,10 +14,10 @@ import type { Skill } from '../types';
 import '../styles/components.css';
 
 interface SkillTreeProps {
-  onSkillClick: (skillId: string) => void;
+  onSkillMouseDown: (skillId: string) => void;
 }
 
-export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
+export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillMouseDown }) => {
   const { tierAtual, setTierAtual, tpAtual, statsJogador, skills } = useSkillStore();
   const skillsDoTier = useSkills(tierAtual);
   const { aplicarLayout } = useLayouts();
@@ -138,7 +138,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
         <Canvas
           skills={skillsComPosicao}
           allSkills={skills}
-          onSkillClick={onSkillClick}
+          onSkillMouseDown={onSkillMouseDown}
           onSkillHover={setHoveredSkill}
         />
         <Controls
