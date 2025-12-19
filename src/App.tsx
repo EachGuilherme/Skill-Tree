@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { SkillTree } from './components/SkillTree';
 import { useSkillStore } from './stores/skillStore';
 import type { Skill } from './types';
@@ -7,39 +7,53 @@ import { SistemaLocks } from './modules/SistemaLocks';
 import './styles/globals.css';
 
 function App() {
-  const { desbloquearSkill, setSkills } = useSkillStore();
-  const sistemaLocks = new SistemaLocks({}, 100000);
+  const { desbloquearSkill, setSkills, setTPAtual, skills, statsJogador, tpAtual } = useSkillStore();
 
   useEffect(() => {
     // Carregar dados iniciais
-    const skills = skillsData as Skill[];
-    if (skills && Array.isArray(skills)) {
-      setSkills(skills);
+    const loadedSkills = skillsData as Skill[];
+    if (loadedSkills && Array.isArray(loadedSkills)) {
+      setSkills(loadedSkills);
     }
   }, [setSkills]);
 
-   const handleSkillClick = (skillId: string) => {
-  const skills = skillsData as Skill[];
-  const skill = skills?.find((s: Skill) => s.id === skillId);
-  
-  // ✅ Checa se skill existe
-  if (!skill) return;
+  const handleSkillClick = useCallback((skillId: string) => {
+    // ✅ Buscar skill do store (state atual)
+    const skill = skills?.find((s: Skill) => s.id === skillId);
+    
+    // ✅ Checa se skill existe
+    if (!skill) {
+      alert('❌ Habilidade não encontrada!');
+      return;
+    }
 
-  if (skill.desbloqueada) {
-    alert(
-      `✅ ${skill.nome}\n\n${skill.descricao}\n\nTier: ${skill.tier}\nCusto: ${skill.custoTP} TP`
-    );
-    return;
-  }
+    // Se já está desbloqueada, apenas mostrar info
+    if (skill.desbloqueada) {
+      alert(
+        `✅ ${skill.nome}\n\n${skill.descricao}\n\nTier: ${skill.tier}\nCusto: ${skill.custoTP} TP`
+      );
+      return;
+    }
 
-  const resultado = sistemaLocks.tentar_desbloquear(skill);
-  if (resultado.sucesso) {
-    desbloquearSkill(skillId);
-    alert(resultado.mensagem);
-  } else {
-    alert(`❌ Não pode desbloquear!\n\n${resultado.mensagem}`);
-  }
-};
+    // ✅ Criar sistema com STATS E TP ATUAIS
+    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual);
+    
+    // ✅ Verificar se pode desbloquear
+    const resultado = sistemaLocks.tentar_desbloquear(skill);
+    
+    if (resultado.sucesso) {
+      // Desbloquear skill
+      desbloquearSkill(skillId);
+      
+      // ✅ Atualizar TP no store
+      const novoTP = tpAtual - skill.custoTP;
+      setTPAtual(novoTP);
+      
+      alert(resultado.mensagem);
+    } else {
+      alert(`❌ Não pode desbloquear!\n\n${resultado.mensagem}`);
+    }
+  }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual]);
 
   return (
     <div className="app">
