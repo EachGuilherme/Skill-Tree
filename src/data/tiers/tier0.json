@@ -1,0 +1,52 @@
+[
+  {
+    "id": "root",
+    "nome": "Começar",
+    "descricao": "Ponto de partida",
+    "tier": 0,
+    "custoTP": 0,
+    "custoStats": {},
+    "prereqSkills": [],
+    "desbloqueada": true
+  },
+  {
+    "id": "ataque-basico",
+    "nome": "Ataque Básico",
+    "descricao": "Aprenda um ataque simples",
+    "tier": 0,
+    "custoTP": 100,
+    "custoStats": { "STR": 5 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "defesa-basica",
+    "nome": "Defesa Básica",
+    "descricao": "Aprenda a se defender",
+    "tier": 0,
+    "custoTP": 100,
+    "custoStats": { "CON": 5 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "magia-fogo",
+    "nome": "Magia do Fogo",
+    "descricao": "Lançar bolas de fogo",
+    "tier": 0,
+    "custoTP": 200,
+    "custoStats": { "MND": 10 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "magia-gelo",
+    "nome": "Magia do Gelo",
+    "descricao": "Congelar inimigos",
+    "tier": 0,
+    "custoTP": 200,
+    "custoStats": { "MND": 10 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  }
+]
