@@ -155,7 +155,7 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ onResetView, onReset }
               <input
                 type="number"
                 min="0"
-                max="99"
+                max="999999"
                 value={statsJogador[stat] || 0}
                 onChange={(e) => handleStatChange(stat, e.target.value)}
                 className="stat-input-small"
