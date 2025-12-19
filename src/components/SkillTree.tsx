@@ -7,6 +7,7 @@ import { StatusPanel } from './StatusPanel';
 import { useSkills } from '../hooks/useSkills';
 import { useLayouts } from '../hooks/useLayouts';
 import { usePanZoom } from '../hooks/usePanZoom';
+import { SistemaLocks } from '../modules/SistemaLocks';
 import type { Skill } from '../types';
 import '../styles/components.css';
 
@@ -15,7 +16,7 @@ interface SkillTreeProps {
 }
 
 export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
-  const { tierAtual, setTierAtual, tpAtual } = useSkillStore();
+  const { tierAtual, setTierAtual, tpAtual, statsJogador } = useSkillStore();
   const skillsDoTier = useSkills(tierAtual);
   const { aplicarLayout } = useLayouts();
   const { zoom, panX, panY, resetView } = usePanZoom();
@@ -31,6 +32,21 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
     resetView();
   }, [resetView]);
 
+  // ✅ Calcular requisitos para exibir
+  const requisitosSkill = useMemo(() => {
+    if (!hoveredSkill) return null;
+    
+    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual);
+    const resultado = sistemaLocks.verificar_requisitos(hoveredSkill);
+    
+    return {
+      tpOK: resultado.temTP,
+      statsOK: resultado.statsOK,
+      prereqOK: resultado.prereqOK,
+      requisitos: resultado.requisitos
+    };
+  }, [hoveredSkill, statsJogador, tpAtual]);
+
   return (
     <div className="skill-tree-container">
       <StatusPanel onResetView={handleResetView} />
@@ -42,7 +58,52 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
             <>
               <h4>{hoveredSkill.nome}</h4>
               <p>{hoveredSkill.descricao}</p>
-              <p>Custo: {hoveredSkill.custoTP} TP</p>
+              
+              {/* TP Cost */}
+              <div className="requisito-item">
+                <span className="requisito-label">Custo TP:</span>
+                <span className={`requisito-valor ${requisitosSkill?.tpOK ? 'ok' : 'nao-ok'}`}>
+                  {hoveredSkill.custoTP}
+                </span>
+              </div>
+
+              {/* Stats Requirements */}
+              {requisitosSkill?.requisitos && Object.keys(requisitosSkill.requisitos).length > 0 && (
+                <div className="requisitos-section">
+                  <span className="requisito-label">Requisitos de Stats:</span>
+                  {Object.entries(requisitosSkill.requisitos).map(([stat, valor]) => {
+                    const playerValue = statsJogador[stat] || 0;
+                    const isSatisfied = playerValue >= (valor as number);
+                    return (
+                      <div key={stat} className="requisito-item">
+                        <span className="stat-name">{stat}:</span>
+                        <span className={`requisito-valor ${isSatisfied ? 'ok' : 'nao-ok'}`}>
+                          {playerValue}/{valor}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Prerequisite Skills */}
+              {hoveredSkill.prereqSkills && hoveredSkill.prereqSkills.length > 0 && (
+                <div className="requisitos-section">
+                  <span className="requisito-label">Habilidades Pré-requisito:</span>
+                  {hoveredSkill.prereqSkills.map((prereqId) => {
+                    const prereqSkill = skillsDoTier.find(s => s.id === prereqId);
+                    if (!prereqSkill) return null;
+                    return (
+                      <div key={prereqId} className="requisito-item">
+                        <span className="stat-name">{prereqSkill.nome}:</span>
+                        <span className={`requisito-valor ${prereqSkill.desbloqueada ? 'ok' : 'nao-ok'}`}>
+                          {prereqSkill.desbloqueada ? '✓ Desbloqueada' : '✕ Bloqueada'}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </>
           )}
         </div>
