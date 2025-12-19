@@ -16,7 +16,7 @@ interface SkillTreeProps {
 }
 
 export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
-  const { tierAtual, setTierAtual, tpAtual, statsJogador } = useSkillStore();
+  const { tierAtual, setTierAtual, tpAtual, statsJogador, skills } = useSkillStore();
   const skillsDoTier = useSkills(tierAtual);
   const { aplicarLayout } = useLayouts();
   const { zoom, panX, panY, resetView } = usePanZoom();
@@ -36,7 +36,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
   const requisitosSkill = useMemo(() => {
     if (!hoveredSkill) return null;
     
-    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual);
+    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills);
     const resultado = sistemaLocks.verificar_requisitos(hoveredSkill);
     
     return {
@@ -45,7 +45,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
       prereqOK: resultado.prereqOK,
       requisitos: resultado.requisitos
     };
-  }, [hoveredSkill, statsJogador, tpAtual]);
+  }, [hoveredSkill, statsJogador, tpAtual, skills]);
 
   return (
     <div className="skill-tree-container">
@@ -91,7 +91,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
                 <div className="requisitos-section">
                   <span className="requisito-label">Habilidades Pré-requisito:</span>
                   {hoveredSkill.prereqSkills.map((prereqId) => {
-                    const prereqSkill = skillsDoTier.find(s => s.id === prereqId);
+                    const prereqSkill = skills.find(s => s.id === prereqId);
                     if (!prereqSkill) return null;
                     return (
                       <div key={prereqId} className="requisito-item">
