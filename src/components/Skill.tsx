@@ -6,7 +6,7 @@ import '../styles/components.css';
 interface SkillProps {
   skill: Skill;
   cor: string;
-  onClick: () => void;
+  onMouseDown: () => void;
   onMouseEnter: (e: React.MouseEvent) => void;
   onMouseLeave: () => void;
 }
@@ -14,7 +14,7 @@ interface SkillProps {
 export const SkillComponent: React.FC<SkillProps> = ({
   skill,
   cor,
-  onClick,
+  onMouseDown,
   onMouseEnter,
   onMouseLeave
 }) => {
@@ -30,7 +30,7 @@ export const SkillComponent: React.FC<SkillProps> = ({
         stroke="#fff"
         strokeWidth={CONFIG.SKILL_STROKE}
         className="skill-circle"
-        onClick={onClick}
+        onMouseDown={onMouseDown}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         style={{ cursor: 'pointer' }}
