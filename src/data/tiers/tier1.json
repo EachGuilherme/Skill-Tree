@@ -1,42 +1,102 @@
 [
   {
-    "id": "golpe-devastador",
-    "nome": "Golpe Devastador",
-    "descricao": "Um ataque poderoso",
+    "id": "tier1-1",
+    "nome": "Habilidade 1",
+    "descricao": "Primeira habilidade do Tier 1",
     "tier": 1,
-    "custoTP": 500,
-    "custoStats": { "STR": 20 },
-    "prereqSkills": ["ataque-basico"],
+    "custoTP": 200,
+    "custoStats": { "STR": 15 },
+    "prereqSkills": ["tier0-7"],
     "desbloqueada": false
   },
   {
-    "id": "escudo-magico",
-    "nome": "Escudo Mágico",
-    "descricao": "Proteção mágica contra danos",
+    "id": "tier1-2",
+    "nome": "Habilidade 2",
+    "descricao": "Segunda habilidade do Tier 1",
     "tier": 1,
-    "custoTP": 500,
+    "custoTP": 200,
+    "custoStats": { "DEX": 15 },
+    "prereqSkills": ["tier0-8"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-3",
+    "nome": "Habilidade 3",
+    "descricao": "Terceira habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 200,
+    "custoStats": { "CON": 15 },
+    "prereqSkills": ["tier0-9"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-4",
+    "nome": "Habilidade 4",
+    "descricao": "Quarta habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 200,
+    "custoStats": { "WIL": 15 },
+    "prereqSkills": ["tier0-4"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-5",
+    "nome": "Habilidade 5",
+    "descricao": "Quinta habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 200,
     "custoStats": { "MND": 15 },
-    "prereqSkills": ["defesa-basica", "magia-fogo"],
+    "prereqSkills": ["tier0-10"],
     "desbloqueada": false
   },
   {
-    "id": "combo-elemento",
-    "nome": "Combo de Elementos",
-    "descricao": "Combinar magia de fogo e gelo",
+    "id": "tier1-6",
+    "nome": "Habilidade 6",
+    "descricao": "Sexta habilidade do Tier 1",
     "tier": 1,
-    "custoTP": 600,
+    "custoTP": 200,
+    "custoStats": { "SPI": 15 },
+    "prereqSkills": ["tier0-6"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-7",
+    "nome": "Habilidade 7",
+    "descricao": "Sétima habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 250,
+    "custoStats": { "STR": 20 },
+    "prereqSkills": ["tier1-1"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-8",
+    "nome": "Habilidade 8",
+    "descricao": "Oitava habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 250,
+    "custoStats": { "DEX": 20 },
+    "prereqSkills": ["tier1-2"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-9",
+    "nome": "Habilidade 9",
+    "descricao": "Nona habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 250,
+    "custoStats": { "CON": 20 },
+    "prereqSkills": ["tier1-3"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier1-10",
+    "nome": "Habilidade 10",
+    "descricao": "Décima habilidade do Tier 1",
+    "tier": 1,
+    "custoTP": 300,
     "custoStats": { "MND": 25 },
-    "prereqSkills": ["magia-fogo", "magia-gelo"],
-    "desbloqueada": false
-  },
-  {
-    "id": "foco-absoluto",
-    "nome": "Foco Absoluto",
-    "descricao": "Aumentar concentração e precisão",
-    "tier": 1,
-    "custoTP": 400,
-    "custoStats": { "WIL": 20 },
-    "prereqSkills": ["ataque-basico"],
+    "prereqSkills": ["tier1-5"],
     "desbloqueada": false
   }
 ]
