@@ -1,0 +1,127 @@
+.status-panel {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 300px;
+  background: rgba(20, 20, 30, 0.95);
+  border: 2px solid #4a9eff;
+  border-radius: 12px;
+  padding: 20px;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-height: 90vh;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(74, 158, 255, 0.2);
+  z-index: 100;
+}
+
+.status-panel h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.5em;
+  color: #4a9eff;
+  border-bottom: 2px solid #4a9eff;
+  padding-bottom: 10px;
+}
+
+.stat-group {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+}
+
+.stat-group:last-child {
+  border-bottom: none;
+}
+
+.stat-group label {
+  display: block;
+  font-size: 0.95em;
+  color: #a0a0b0;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.tp-display {
+  font-size: 2em;
+  font-weight: bold;
+  color: #4a9eff;
+  background: rgba(74, 158, 255, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(74, 158, 255, 0.3);
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(74, 158, 255, 0.05);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 0.9em;
+}
+
+.stat span:first-child {
+  color: #a0a0b0;
+}
+
+.stat span:last-child {
+  color: #4a9eff;
+  font-weight: bold;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-info {
+  background: rgba(74, 158, 255, 0.2);
+  color: #4a9eff;
+  border: 1px solid #4a9eff;
+}
+
+.btn-info:hover {
+  background: rgba(74, 158, 255, 0.3);
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.3);
+}
+
+.btn:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Scrollbar estilizado */
+.status-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.status-panel::-webkit-scrollbar-track {
+  background: rgba(74, 158, 255, 0.1);
+  border-radius: 4px;
+}
+
+.status-panel::-webkit-scrollbar-thumb {
+  background: rgba(74, 158, 255, 0.3);
+  border-radius: 4px;
+}
+
+.status-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 158, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .status-panel {
+    width: 280px;
+    right: 10px;
+    top: 10px;
+  }
+}
