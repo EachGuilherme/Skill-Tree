@@ -16,7 +16,7 @@
     "tier": 0,
     "custoTP": 50,
     "custoStats": { "STR": 3 },
-    "prereqSkills": ["root"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -26,7 +26,7 @@
     "tier": 0,
     "custoTP": 50,
     "custoStats": { "DEX": 3 },
-    "prereqSkills": ["root"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -36,7 +36,7 @@
     "tier": 0,
     "custoTP": 50,
     "custoStats": { "CON": 3 },
-    "prereqSkills": ["root"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -46,7 +46,7 @@
     "tier": 0,
     "custoTP": 50,
     "custoStats": { "WIL": 3 },
-    "prereqSkills": ["root"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -56,7 +56,7 @@
     "tier": 0,
     "custoTP": 50,
     "custoStats": { "MND": 3 },
-    "prereqSkills": ["root"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -66,7 +66,7 @@
     "tier": 0,
     "custoTP": 50,
     "custoStats": { "SPI": 3 },
-    "prereqSkills": ["root"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -76,7 +76,7 @@
     "tier": 0,
     "custoTP": 75,
     "custoStats": { "STR": 5 },
-    "prereqSkills": ["tier0-1"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -86,7 +86,7 @@
     "tier": 0,
     "custoTP": 75,
     "custoStats": { "DEX": 5 },
-    "prereqSkills": ["tier0-2"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -96,7 +96,7 @@
     "tier": 0,
     "custoTP": 75,
     "custoStats": { "CON": 5 },
-    "prereqSkills": ["tier0-3"],
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -106,7 +106,7 @@
     "tier": 0,
     "custoTP": 100,
     "custoStats": { "MND": 5 },
-    "prereqSkills": ["tier0-5"],
+    "prereqSkills": [],
     "desbloqueada": false
   }
 ]
