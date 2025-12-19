@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "id": "tier2-1",
+    "nome": "Habilidade 1",
+    "descricao": "Primeira habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 500,
+    "custoStats": { "STR": 30 },
+    "prereqSkills": ["tier1-7"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-2",
+    "nome": "Habilidade 2",
+    "descricao": "Segunda habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 500,
+    "custoStats": { "DEX": 30 },
+    "prereqSkills": ["tier1-8"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-3",
+    "nome": "Habilidade 3",
+    "descricao": "Terceira habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 500,
+    "custoStats": { "CON": 30 },
+    "prereqSkills": ["tier1-9"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-4",
+    "nome": "Habilidade 4",
+    "descricao": "Quarta habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 500,
+    "custoStats": { "WIL": 30 },
+    "prereqSkills": ["tier1-4"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-5",
+    "nome": "Habilidade 5",
+    "descricao": "Quinta habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 500,
+    "custoStats": { "MND": 30 },
+    "prereqSkills": ["tier1-10"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-6",
+    "nome": "Habilidade 6",
+    "descricao": "Sexta habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 500,
+    "custoStats": { "SPI": 30 },
+    "prereqSkills": ["tier1-6"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-7",
+    "nome": "Habilidade 7",
+    "descricao": "Sétima habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 600,
+    "custoStats": { "STR": 40 },
+    "prereqSkills": ["tier2-1"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-8",
+    "nome": "Habilidade 8",
+    "descricao": "Oitava habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 600,
+    "custoStats": { "DEX": 40 },
+    "prereqSkills": ["tier2-2"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-9",
+    "nome": "Habilidade 9",
+    "descricao": "Nona habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 600,
+    "custoStats": { "CON": 40 },
+    "prereqSkills": ["tier2-3"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier2-10",
+    "nome": "Habilidade 10",
+    "descricao": "Décima habilidade do Tier 2",
+    "tier": 2,
+    "custoTP": 700,
+    "custoStats": { "MND": 50 },
+    "prereqSkills": ["tier2-5"],
+    "desbloqueada": false
+  }
+]
