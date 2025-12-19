@@ -1,15 +1,34 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
 import { SkillTree } from './components/SkillTree';
 import { useSkillStore } from './stores/skillStore';
-import type { Skill } from './types';
-import { allSkills } from './data';
+import type { Skill, TierInfo } from './types';
+import { allSkills, tiers } from './data';
 import { SistemaLocks } from './modules/SistemaLocks';
+import { SistemaTiers } from './modules/SistemaTiers';
 import { SistemaSave } from './modules/SistemaSave';
 import './styles/globals.css';
 
 function App() {
   const { desbloquearSkill, setSkills, setTPAtual, setStat, skills, statsJogador, tpAtual } = useSkillStore();
   const sistemaSave = new SistemaSave();
+
+  // 💯 Criar instãncia do SistemaTiers baseado nas skills atuais
+  const sistemaTiers = useMemo(() => {
+    if (!skills || skills.length === 0) {
+      return new SistemaTiers([], tiers as TierInfo[]);
+    }
+    return new SistemaTiers(skills, tiers as TierInfo[]);
+  }, [skills]);
+
+  // 💯 Carregar as skills desbloqueadas no sistema de tiers
+  useEffect(() => {
+    if (skills && skills.length > 0) {
+      const skillsDesbloqueadas = skills
+        .filter(s => s.desbloqueada)
+        .map(s => s.id);
+      sistemaTiers.carregarSkillsDesbloqueadas(skillsDesbloqueadas);
+    }
+  }, [skills]);
 
   useEffect(() => {
     // Carregar dados iniciais
@@ -55,8 +74,14 @@ function App() {
       return;
     }
 
-    // ✅ Criar sistema com STATS, TP E ALL SKILLS ATUAIS
-    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills);
+    // 💯 Atualizar sistema de tiers com skills desbloqueadas
+    const skillsDesbloqueadas = skills
+      .filter(s => s.desbloqueada)
+      .map(s => s.id);
+    sistemaTiers.carregarSkillsDesbloqueadas(skillsDesbloqueadas);
+
+    // ✅ Criar sistema com STATS, TP, ALL SKILLS E SISTEMA DE TIERS
+    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills, sistemaTiers);
     
     // ✅ Verificar se pode desbloquear
     const resultado = sistemaLocks.tentar_desbloquear(skill);
@@ -70,16 +95,16 @@ function App() {
       setTPAtual(novoTP);
       
       // ✅ Salvar progresso
-      const skillsDesbloqueadas = skills
+      const skillsDesbloqueadasAtualizadas = skills
         .filter(s => s.desbloqueada || s.id === skillId)
         .map(s => s.id);
-      sistemaSave.salvarProgresso(statsJogador, novoTP, skillsDesbloqueadas);
+      sistemaSave.salvarProgresso(statsJogador, novoTP, skillsDesbloqueadasAtualizadas);
       
       alert(resultado.mensagem);
     } else {
       alert(`❌ Não pode desbloquear!\n\n${resultado.mensagem}`);
     }
-  }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual]);
+  }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual, sistemaTiers]);
 
   return (
     <div className="app">
