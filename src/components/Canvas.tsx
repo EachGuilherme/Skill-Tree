@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import type { Skill} from '../types';
 import { CONFIG } from '../types';
 import { SkillComponent } from './Skill';
@@ -15,16 +15,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   onSkillClick,
   onSkillHover,
 }) => {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const { zoom, panX, panY, handleWheel, handleMouseDown } = usePanZoom();
-
-  useEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
-
-    svg.addEventListener('wheel', handleWheel as EventListener);
-    return () => svg.removeEventListener('wheel', handleWheel as EventListener);
-  }, [handleWheel]);
+  const { zoom, panX, panY, handleMouseDown, svgRef } = usePanZoom();
 
   return (
     <svg
@@ -33,7 +24,9 @@ export const Canvas: React.FC<CanvasProps> = ({
       height={CONFIG.CANVAS_HEIGHT}
       style={{
         backgroundColor: CONFIG.COLORS.background,
-        border: '1px solid #333'
+        border: '1px solid #333',
+        cursor: 'grab',
+        userSelect: 'none'
       }}
       onMouseDown={handleMouseDown}
     >
