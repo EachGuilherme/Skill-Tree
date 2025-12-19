@@ -1,10 +1,12 @@
 import React, { useRef, useMemo } from 'react';
-import type { Skill} from '../types';
+import type { Skill } from '../types';
 import { CONFIG } from '../types';
 import { SkillComponent } from './Skill';
 import { usePanZoom } from '../hooks/usePanZoom';
 import { SistemaLocks } from '../modules/SistemaLocks';
+import { SistemaTiers } from '../modules/SistemaTiers';
 import { useSkillStore } from '../stores/skillStore';
+import { tiers } from '../data';
 
 interface CanvasProps {
   skills: Skill[];
@@ -20,10 +22,24 @@ export const Canvas: React.FC<CanvasProps> = ({
   const { zoom, panX, panY, handleMouseDown, svgRef } = usePanZoom();
   const { statsJogador, tpAtual } = useSkillStore();
 
+  // 💯 Criar instância de SistemaTiers
+  const sistemaTiers = useMemo(() => {
+    if (!skills || skills.length === 0) {
+      return new SistemaTiers([], tiers);
+    }
+    const sistema = new SistemaTiers(skills, tiers);
+    // Carregar skills desbloqueadas
+    const skillsDesbloqueadas = skills
+      .filter(s => s.desbloqueada)
+      .map(s => s.id);
+    sistema.carregarSkillsDesbloqueadas(skillsDesbloqueadas);
+    return sistema;
+  }, [skills]);
+
   // ✅ Criar sistema de locks para determinar cores
   const sistemaLocks = useMemo(
-    () => new SistemaLocks(statsJogador, tpAtual, skills),
-    [statsJogador, tpAtual, skills]
+    () => new SistemaLocks(statsJogador, tpAtual, skills, sistemaTiers),
+    [statsJogador, tpAtual, skills, sistemaTiers]
   );
 
   const getCorSkill = (skill: Skill): string => {
