@@ -61,18 +61,72 @@
   border-left: 3px solid var(--color-success);
   border-radius: 4px;
   min-height: 100px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .skill-info h4 {
   color: var(--color-success);
-  margin-bottom: 8px;
+  margin: 0 0 8px 0;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .skill-info p {
   color: var(--color-text-secondary);
   font-size: 12px;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+}
+
+/* Requisitos */
+.requisitos-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(50, 184, 198, 0.3);
+}
+
+.requisito-label {
+  display: block;
+  color: #4a9eff;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.requisito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
   margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.stat-name {
+  color: #a0a0b0;
+  font-weight: 500;
+}
+
+.requisito-valor {
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.requisito-valor.ok {
+  color: #32b8c6;
+  background: rgba(50, 184, 198, 0.2);
+}
+
+.requisito-valor.nao-ok {
+  color: #c01547;
+  background: rgba(192, 21, 47, 0.2);
 }
 
 /* Canvas Container */
