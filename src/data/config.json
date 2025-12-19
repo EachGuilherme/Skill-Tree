@@ -1,8 +1,15 @@
 {
   "CANVAS_WIDTH": 2400,
   "CANVAS_HEIGHT": 1600,
-  "TIERS_TOTAL": 5,
+  "TIERS_TOTAL": 6,
   "TP_INICIAL": 100000,
+  "TIER_UNLOCK_PERCENTAGES": {
+    "1": 20,
+    "2": 40,
+    "3": 60,
+    "4": 80,
+    "5": 90
+  },
   "COLORS": {
     "background": "#1a1a2e",
     "surface": "#16213e",
