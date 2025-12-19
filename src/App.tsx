@@ -27,6 +27,19 @@ function App() {
       return;
     }
 
+    // DEBUG: Log do clique
+    console.log('\n🔍 DEBUG CLICK:', {
+      skillId,
+      skillNome: skill.nome,
+      desbloqueada: skill.desbloqueada,
+      custoTP: skill.custoTP,
+      custoStats: skill.custoStats,
+      prereqSkills: skill.prereqSkills,
+      tpAtual,
+      statsJogador,
+      skillsCount: skills.length
+    });
+
     // Se já está desbloqueada, apenas mostrar info
     if (skill.desbloqueada) {
       alert(
@@ -38,8 +51,16 @@ function App() {
     // ✅ Criar sistema com STATS, TP E ALL SKILLS ATUAIS
     const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills);
     
+    // DEBUG: Log do sistema
+    console.log('SistemaLocks verificando:', {
+      podePegar: sistemaLocks.podePegar(skill),
+      motivo: sistemaLocks.getMotivoTranca(skill)
+    });
+    
     // ✅ Verificar se pode desbloquear
     const resultado = sistemaLocks.tentar_desbloquear(skill);
+    
+    console.log('Resultado desbloqueio:', resultado);
     
     if (resultado.sucesso) {
       // Desbloquear skill
@@ -49,8 +70,10 @@ function App() {
       const novoTP = tpAtual - skill.custoTP;
       setTPAtual(novoTP);
       
+      console.log('✅ Skill desbloqueada! Novo TP:', novoTP);
       alert(resultado.mensagem);
     } else {
+      console.log('❌ Não pode desbloquear:', resultado.mensagem);
       alert(`❌ Não pode desbloquear!\n\n${resultado.mensagem}`);
     }
   }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual]);
