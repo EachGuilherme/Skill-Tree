@@ -10,43 +10,103 @@
     "desbloqueada": true
   },
   {
-    "id": "ataque-basico",
-    "nome": "Ataque Básico",
-    "descricao": "Aprenda um ataque simples",
+    "id": "tier0-1",
+    "nome": "Habilidade 1",
+    "descricao": "Primeira habilidade do Tier 0",
     "tier": 0,
-    "custoTP": 100,
+    "custoTP": 50,
+    "custoStats": { "STR": 3 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-2",
+    "nome": "Habilidade 2",
+    "descricao": "Segunda habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 50,
+    "custoStats": { "DEX": 3 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-3",
+    "nome": "Habilidade 3",
+    "descricao": "Terceira habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 50,
+    "custoStats": { "CON": 3 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-4",
+    "nome": "Habilidade 4",
+    "descricao": "Quarta habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 50,
+    "custoStats": { "WIL": 3 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-5",
+    "nome": "Habilidade 5",
+    "descricao": "Quinta habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 50,
+    "custoStats": { "MND": 3 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-6",
+    "nome": "Habilidade 6",
+    "descricao": "Sexta habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 50,
+    "custoStats": { "SPI": 3 },
+    "prereqSkills": ["root"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-7",
+    "nome": "Habilidade 7",
+    "descricao": "Sétima habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 75,
     "custoStats": { "STR": 5 },
-    "prereqSkills": ["root"],
+    "prereqSkills": ["tier0-1"],
     "desbloqueada": false
   },
   {
-    "id": "defesa-basica",
-    "nome": "Defesa Básica",
-    "descricao": "Aprenda a se defender",
+    "id": "tier0-8",
+    "nome": "Habilidade 8",
+    "descricao": "Oitava habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 75,
+    "custoStats": { "DEX": 5 },
+    "prereqSkills": ["tier0-2"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-9",
+    "nome": "Habilidade 9",
+    "descricao": "Nona habilidade do Tier 0",
+    "tier": 0,
+    "custoTP": 75,
+    "custoStats": { "CON": 5 },
+    "prereqSkills": ["tier0-3"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier0-10",
+    "nome": "Habilidade 10",
+    "descricao": "Décima habilidade do Tier 0",
     "tier": 0,
     "custoTP": 100,
-    "custoStats": { "CON": 5 },
-    "prereqSkills": ["root"],
-    "desbloqueada": false
-  },
-  {
-    "id": "magia-fogo",
-    "nome": "Magia do Fogo",
-    "descricao": "Lançar bolas de fogo",
-    "tier": 0,
-    "custoTP": 200,
-    "custoStats": { "MND": 10 },
-    "prereqSkills": ["root"],
-    "desbloqueada": false
-  },
-  {
-    "id": "magia-gelo",
-    "nome": "Magia do Gelo",
-    "descricao": "Congelar inimigos",
-    "tier": 0,
-    "custoTP": 200,
-    "custoStats": { "MND": 10 },
-    "prereqSkills": ["root"],
+    "custoStats": { "MND": 5 },
+    "prereqSkills": ["tier0-5"],
     "desbloqueada": false
   }
 ]
