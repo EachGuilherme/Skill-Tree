@@ -47,6 +47,22 @@ export class SistemaLocks {
     return true;
   }
 
+  verificar_requisitos(skill: Skill): {
+    temTP: boolean;
+    statsOK: boolean;
+    prereqOK: boolean;
+    requisitos: Record<string, number>;
+  } {
+    return {
+      temTP: this.tpAtual >= skill.custoTP,
+      statsOK: Object.entries(skill.custoStats || {}).every(
+        ([stat, valor]) => (this.statsJogador[stat] || 0) >= valor
+      ),
+      prereqOK: true, // Verificação de prerequisitos é feita no componente
+      requisitos: skill.custoStats || {}
+    };
+  }
+
   tentar_desbloquear(skill: Skill): { sucesso: boolean; mensagem: string } {
     if (skill.desbloqueada) {
       return { sucesso: false, mensagem: 'Skill já desbloqueada' };
