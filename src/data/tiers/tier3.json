@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "id": "tier3-1",
+    "nome": "Habilidade 1",
+    "descricao": "Primeira habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1000,
+    "custoStats": { "STR": 50 },
+    "prereqSkills": ["tier2-7"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-2",
+    "nome": "Habilidade 2",
+    "descricao": "Segunda habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1000,
+    "custoStats": { "DEX": 50 },
+    "prereqSkills": ["tier2-8"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-3",
+    "nome": "Habilidade 3",
+    "descricao": "Terceira habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1000,
+    "custoStats": { "CON": 50 },
+    "prereqSkills": ["tier2-9"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-4",
+    "nome": "Habilidade 4",
+    "descricao": "Quarta habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1000,
+    "custoStats": { "WIL": 50 },
+    "prereqSkills": ["tier2-4"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-5",
+    "nome": "Habilidade 5",
+    "descricao": "Quinta habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1000,
+    "custoStats": { "MND": 50 },
+    "prereqSkills": ["tier2-10"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-6",
+    "nome": "Habilidade 6",
+    "descricao": "Sexta habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1000,
+    "custoStats": { "SPI": 50 },
+    "prereqSkills": ["tier2-6"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-7",
+    "nome": "Habilidade 7",
+    "descricao": "Sétima habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1200,
+    "custoStats": { "STR": 60 },
+    "prereqSkills": ["tier3-1"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-8",
+    "nome": "Habilidade 8",
+    "descricao": "Oitava habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1200,
+    "custoStats": { "DEX": 60 },
+    "prereqSkills": ["tier3-2"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-9",
+    "nome": "Habilidade 9",
+    "descricao": "Nona habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1200,
+    "custoStats": { "CON": 60 },
+    "prereqSkills": ["tier3-3"],
+    "desbloqueada": false
+  },
+  {
+    "id": "tier3-10",
+    "nome": "Habilidade 10",
+    "descricao": "Décima habilidade do Tier 3",
+    "tier": 3,
+    "custoTP": 1500,
+    "custoStats": { "MND": 75 },
+    "prereqSkills": ["tier3-5"],
+    "desbloqueada": false
+  }
+]
