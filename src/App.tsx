@@ -35,8 +35,8 @@ function App() {
       return;
     }
 
-    // ✅ Criar sistema com STATS E TP ATUAIS
-    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual);
+    // ✅ Criar sistema com STATS, TP E ALL SKILLS ATUAIS
+    const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills);
     
     // ✅ Verificar se pode desbloquear
     const resultado = sistemaLocks.tentar_desbloquear(skill);
