@@ -5,8 +5,8 @@
     "descricao": "Primeira habilidade do Tier 5",
     "tier": 5,
     "custoTP": 5000,
-    "custoStats": { "STR": 99 },
-    "prereqSkills": ["tier4-7"],
+    "custoStats": { "STR": 150 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -15,8 +15,8 @@
     "descricao": "Segunda habilidade do Tier 5",
     "tier": 5,
     "custoTP": 5000,
-    "custoStats": { "DEX": 99 },
-    "prereqSkills": ["tier4-8"],
+    "custoStats": { "DEX": 150 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -25,8 +25,8 @@
     "descricao": "Terceira habilidade do Tier 5",
     "tier": 5,
     "custoTP": 5000,
-    "custoStats": { "CON": 99 },
-    "prereqSkills": ["tier4-9"],
+    "custoStats": { "CON": 150 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -35,8 +35,8 @@
     "descricao": "Quarta habilidade do Tier 5",
     "tier": 5,
     "custoTP": 5000,
-    "custoStats": { "WIL": 99 },
-    "prereqSkills": ["tier4-4"],
+    "custoStats": { "WIL": 150 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -45,8 +45,8 @@
     "descricao": "Quinta habilidade do Tier 5",
     "tier": 5,
     "custoTP": 5000,
-    "custoStats": { "MND": 99 },
-    "prereqSkills": ["tier4-10"],
+    "custoStats": { "MND": 150 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -55,8 +55,8 @@
     "descricao": "Sexta habilidade do Tier 5",
     "tier": 5,
     "custoTP": 5000,
-    "custoStats": { "SPI": 99 },
-    "prereqSkills": ["tier4-6"],
+    "custoStats": { "SPI": 150 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -64,9 +64,9 @@
     "nome": "Habilidade 7",
     "descricao": "Sétima habilidade do Tier 5",
     "tier": 5,
-    "custoTP": 7500,
-    "custoStats": { "STR": 99, "DEX": 50 },
-    "prereqSkills": ["tier5-1"],
+    "custoTP": 6000,
+    "custoStats": { "STR": 180 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -74,9 +74,9 @@
     "nome": "Habilidade 8",
     "descricao": "Oitava habilidade do Tier 5",
     "tier": 5,
-    "custoTP": 7500,
-    "custoStats": { "DEX": 99, "CON": 50 },
-    "prereqSkills": ["tier5-2"],
+    "custoTP": 6000,
+    "custoStats": { "DEX": 180 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -84,19 +84,19 @@
     "nome": "Habilidade 9",
     "descricao": "Nona habilidade do Tier 5",
     "tier": 5,
-    "custoTP": 7500,
-    "custoStats": { "CON": 99, "MND": 50 },
-    "prereqSkills": ["tier5-3"],
+    "custoTP": 6000,
+    "custoStats": { "CON": 180 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
     "id": "tier5-10",
     "nome": "Habilidade 10",
-    "descricao": "Décima habilidade do Tier 5 - A Máxima!",
+    "descricao": "Décima habilidade do Tier 5",
     "tier": 5,
-    "custoTP": 10000,
-    "custoStats": { "STR": 99, "DEX": 99, "CON": 99, "WIL": 99, "MND": 99, "SPI": 99 },
-    "prereqSkills": ["tier5-1", "tier5-2", "tier5-3", "tier5-4", "tier5-5"],
+    "custoTP": 7000,
+    "custoStats": { "MND": 200 },
+    "prereqSkills": [],
     "desbloqueada": false
   }
 ]

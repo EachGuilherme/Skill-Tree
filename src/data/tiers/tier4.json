@@ -5,8 +5,8 @@
     "descricao": "Primeira habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2000,
-    "custoStats": { "STR": 75 },
-    "prereqSkills": ["tier3-7"],
+    "custoStats": { "STR": 80 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -15,8 +15,8 @@
     "descricao": "Segunda habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2000,
-    "custoStats": { "DEX": 75 },
-    "prereqSkills": ["tier3-8"],
+    "custoStats": { "DEX": 80 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -25,8 +25,8 @@
     "descricao": "Terceira habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2000,
-    "custoStats": { "CON": 75 },
-    "prereqSkills": ["tier3-9"],
+    "custoStats": { "CON": 80 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -35,8 +35,8 @@
     "descricao": "Quarta habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2000,
-    "custoStats": { "WIL": 75 },
-    "prereqSkills": ["tier3-4"],
+    "custoStats": { "WIL": 80 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -45,8 +45,8 @@
     "descricao": "Quinta habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2000,
-    "custoStats": { "MND": 75 },
-    "prereqSkills": ["tier3-10"],
+    "custoStats": { "MND": 80 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -55,8 +55,8 @@
     "descricao": "Sexta habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2000,
-    "custoStats": { "SPI": 75 },
-    "prereqSkills": ["tier3-6"],
+    "custoStats": { "SPI": 80 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -65,8 +65,8 @@
     "descricao": "Sétima habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2500,
-    "custoStats": { "STR": 90 },
-    "prereqSkills": ["tier4-1"],
+    "custoStats": { "STR": 100 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -75,8 +75,8 @@
     "descricao": "Oitava habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2500,
-    "custoStats": { "DEX": 90 },
-    "prereqSkills": ["tier4-2"],
+    "custoStats": { "DEX": 100 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -85,8 +85,8 @@
     "descricao": "Nona habilidade do Tier 4",
     "tier": 4,
     "custoTP": 2500,
-    "custoStats": { "CON": 90 },
-    "prereqSkills": ["tier4-3"],
+    "custoStats": { "CON": 100 },
+    "prereqSkills": [],
     "desbloqueada": false
   },
   {
@@ -95,8 +95,8 @@
     "descricao": "Décima habilidade do Tier 4",
     "tier": 4,
     "custoTP": 3000,
-    "custoStats": { "MND": 99 },
-    "prereqSkills": ["tier4-5"],
+    "custoStats": { "MND": 120 },
+    "prereqSkills": [],
     "desbloqueada": false
   }
 ]
