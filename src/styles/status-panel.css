@@ -42,6 +42,7 @@
   font-weight: 500;
 }
 
+/* TP Display & Edit */
 .tp-display {
   font-size: 2em;
   font-weight: bold;
@@ -51,8 +52,95 @@
   border-radius: 8px;
   text-align: center;
   border: 1px solid rgba(74, 158, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.tp-display:hover {
+  background: rgba(74, 158, 255, 0.15);
+  border-color: #4a9eff;
+}
+
+.edit-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.stat-input {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(74, 158, 255, 0.1);
+  border: 1px solid #4a9eff;
+  border-radius: 6px;
+  color: #4a9eff;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.stat-input:focus {
+  outline: none;
+  border-color: #4a9eff;
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+.btn-save, .btn-cancel {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  min-width: 40px;
+}
+
+.btn-save {
+  background: rgba(50, 184, 198, 0.2);
+  color: #32b8c6;
+  border: 1px solid #32b8c6;
+}
+
+.btn-save:hover {
+  background: rgba(50, 184, 198, 0.3);
+  box-shadow: 0 0 10px rgba(50, 184, 198, 0.3);
+}
+
+.btn-cancel {
+  background: rgba(192, 21, 47, 0.2);
+  color: #c01547;
+  border: 1px solid #c01547;
+}
+
+.btn-cancel:hover {
+  background: rgba(192, 21, 47, 0.3);
+  box-shadow: 0 0 10px rgba(192, 21, 47, 0.3);
+}
+
+/* Stats Header */
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.btn-edit-stats {
+  background: rgba(74, 158, 255, 0.2);
+  border: 1px solid #4a9eff;
+  color: #4a9eff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+}
+
+.btn-edit-stats:hover {
+  background: rgba(74, 158, 255, 0.3);
+}
+
+/* Individual Stats */
 .stat {
   display: flex;
   justify-content: space-between;
@@ -61,17 +149,36 @@
   border-radius: 6px;
   margin-bottom: 6px;
   font-size: 0.9em;
+  align-items: center;
 }
 
 .stat span:first-child {
   color: #a0a0b0;
 }
 
-.stat span:last-child {
+.stat-value {
   color: #4a9eff;
   font-weight: bold;
 }
 
+.stat-input-small {
+  width: 50px;
+  padding: 4px 8px;
+  background: rgba(74, 158, 255, 0.1);
+  border: 1px solid #4a9eff;
+  border-radius: 4px;
+  color: #4a9eff;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.stat-input-small:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(74, 158, 255, 0.3);
+}
+
+/* Buttons */
 .btn {
   width: 100%;
   padding: 10px;
