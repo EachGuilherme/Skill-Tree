@@ -19,7 +19,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
   const { tierAtual, setTierAtual, tpAtual, statsJogador, skills } = useSkillStore();
   const skillsDoTier = useSkills(tierAtual);
   const { aplicarLayout } = useLayouts();
-  const { zoom, panX, panY, resetView } = usePanZoom();
+  const { resetView } = usePanZoom();
   
   const [layout, setLayout] = useState('radial');
   const [hoveredSkill, setHoveredSkill] = useState<Skill | null>(null);
@@ -116,11 +116,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
           onSkillHover={setHoveredSkill}
         />
         <Controls
-          zoom={zoom}
-          onZoomChange={() => {}}
-          onResetView={handleResetView}
           onLayoutChange={setLayout}
-          tpAtual={tpAtual}
         />
       </div>
     </div>
