@@ -1,8 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import type { Skill} from '../types';
 import { CONFIG } from '../types';
 import { SkillComponent } from './Skill';
 import { usePanZoom } from '../hooks/usePanZoom';
+import { SistemaLocks } from '../modules/SistemaLocks';
+import { useSkillStore } from '../stores/skillStore';
 
 interface CanvasProps {
   skills: Skill[];
@@ -16,6 +18,17 @@ export const Canvas: React.FC<CanvasProps> = ({
   onSkillHover,
 }) => {
   const { zoom, panX, panY, handleMouseDown, svgRef } = usePanZoom();
+  const { statsJogador, tpAtual } = useSkillStore();
+
+  // ✅ Criar sistema de locks para determinar cores
+  const sistemaLocks = useMemo(
+    () => new SistemaLocks(statsJogador, tpAtual, skills),
+    [statsJogador, tpAtual, skills]
+  );
+
+  const getCorSkill = (skill: Skill): string => {
+    return sistemaLocks.getCorSkill(skill);
+  };
 
   return (
     <svg
@@ -58,7 +71,7 @@ export const Canvas: React.FC<CanvasProps> = ({
           <SkillComponent
             key={skill.id}
             skill={skill}
-            cor={skill.desbloqueada ? CONFIG.COLORS.success : CONFIG.COLORS.locked}
+            cor={getCorSkill(skill)}
             onClick={() => onSkillClick(skill.id)}
             onMouseEnter={() => onSkillHover(skill)}
             onMouseLeave={() => onSkillHover(null)}
