@@ -55,6 +55,7 @@ export function usePanZoom() {
     };
   }, [handleWheel, handleMouseMove, handleMouseUp]);
 
+  // ✅ Reset view
   const resetView = useCallback(() => {
     setZoom(1);
     setPanX(0);
