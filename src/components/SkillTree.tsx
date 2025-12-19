@@ -1,10 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useSkillStore } from '../stores/skillStore';
 import { Canvas } from './Canvas';
 import { Controls } from './Controls';
 import { TierSelector } from './TierSelector';
+import { StatusPanel } from './StatusPanel';
 import { useSkills } from '../hooks/useSkills';
 import { useLayouts } from '../hooks/useLayouts';
+import { usePanZoom } from '../hooks/usePanZoom';
 import type { Skill } from '../types';
 import '../styles/components.css';
 
@@ -16,17 +18,23 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
   const { tierAtual, setTierAtual, tpAtual } = useSkillStore();
   const skillsDoTier = useSkills(tierAtual);
   const { aplicarLayout } = useLayouts();
+  const { zoom, panX, panY, resetView } = usePanZoom();
   
   const [layout, setLayout] = useState('radial');
   const [hoveredSkill, setHoveredSkill] = useState<Skill | null>(null);
 
   const skillsComPosicao = useMemo(() => {
-  return aplicarLayout(skillsDoTier, layout);
-}, [skillsDoTier, layout, aplicarLayout]);
+    return aplicarLayout(skillsDoTier, layout);
+  }, [skillsDoTier, layout, aplicarLayout]);
 
+  const handleResetView = useCallback(() => {
+    resetView();
+  }, [resetView]);
 
   return (
     <div className="skill-tree-container">
+      <StatusPanel onResetView={handleResetView} />
+
       <div className="sidebar">
         <TierSelector tierAtual={tierAtual} onTierChange={setTierAtual} />
         <div className="skill-info">
@@ -47,9 +55,9 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ onSkillClick }) => {
           onSkillHover={setHoveredSkill}
         />
         <Controls
-          zoom={1}
+          zoom={zoom}
           onZoomChange={() => {}}
-          onResetView={() => {}}
+          onResetView={handleResetView}
           onLayoutChange={setLayout}
           tpAtual={tpAtual}
         />
