@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { SkillTree } from './components/SkillTree';
 import { useSkillStore } from './stores/skillStore';
 import type { Skill } from './types';
-import skillsData from './data/skills.json';
+import { allSkills } from './data/tiers';
 import { SistemaLocks } from './modules/SistemaLocks';
 import { SistemaSave } from './modules/SistemaSave';
 import './styles/globals.css';
@@ -13,9 +13,8 @@ function App() {
 
   useEffect(() => {
     // Carregar dados iniciais
-    const loadedSkills = skillsData as Skill[];
-    if (loadedSkills && Array.isArray(loadedSkills)) {
-      setSkills(loadedSkills);
+    if (allSkills && Array.isArray(allSkills)) {
+      setSkills(allSkills);
     }
 
     // ✅ Carregador save
@@ -30,7 +29,7 @@ function App() {
       setTPAtual(save.tpAtual);
 
       // Restaurar skills desbloqueadas
-      const skillsComDesbloqueadas = loadedSkills.map(s => ({
+      const skillsComDesbloqueadas = allSkills.map(s => ({
         ...s,
         desbloqueada: save.skillsDesbloqueadas.includes(s.id)
       }));
