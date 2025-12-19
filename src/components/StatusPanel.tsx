@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSkillStore } from '../stores/skillStore';
 import '../styles/status-panel.css';
 
@@ -7,51 +7,89 @@ interface StatusPanelProps {
 }
 
 export const StatusPanel: React.FC<StatusPanelProps> = ({ onResetView }) => {
-  const { tpAtual, statsJogador } = useSkillStore();
+  const { tpAtual, setTPAtual, statsJogador, setStat } = useSkillStore();
+  const [editandoTP, setEditandoTP] = useState(false);
+  const [editandoStats, setEditandoStats] = useState(false);
+  const [tpTemp, setTpTemp] = useState(tpAtual.toString());
+
+  const handleSaveTP = () => {
+    const novoTP = parseInt(tpTemp) || 0;
+    setTPAtual(Math.max(0, novoTP));
+    setEditandoTP(false);
+  };
+
+  const handleStatChange = (stat: string, valor: string) => {
+    const novoValor = Math.max(0, Math.min(99, parseInt(valor) || 0));
+    setStat(stat, novoValor);
+  };
 
   return (
     <div className="status-panel">
       <h2>⚔️ Status</h2>
 
+      {/* TP Section */}
       <div className="stat-group">
         <label>💰 TP Disponível:</label>
-        <div className="tp-display">{tpAtual}</div>
+        {editandoTP ? (
+          <div className="edit-container">
+            <input
+              type="number"
+              min="0"
+              value={tpTemp}
+              onChange={(e) => setTpTemp(e.target.value)}
+              className="stat-input"
+              autoFocus
+            />
+            <button onClick={handleSaveTP} className="btn-save">✓</button>
+            <button onClick={() => setEditandoTP(false)} className="btn-cancel">✕</button>
+          </div>
+        ) : (
+          <div 
+            className="tp-display" 
+            onClick={() => {
+              setTpTemp(tpAtual.toString());
+              setEditandoTP(true);
+            }}
+            title="Clique para editar"
+          >
+            {tpAtual}
+          </div>
+        )}
       </div>
 
+      {/* Stats Section */}
       <div className="stat-group">
-        <label><strong>📊 Stats Base:</strong></label>
-        
-        <div className="stat">
-          <span>STR (Força):</span>
-          <span>{statsJogador.str || 0}</span>
+        <div className="stats-header">
+          <label><strong>📊 Stats Base:</strong></label>
+          <button 
+            className="btn-edit-stats"
+            onClick={() => setEditandoStats(!editandoStats)}
+            title={editandoStats ? "Fechar edição" : "Editar stats"}
+          >
+            {editandoStats ? "✓" : "✏️"}
+          </button>
         </div>
         
-        <div className="stat">
-          <span>DEX (Destreza):</span>
-          <span>{statsJogador.dex || 0}</span>
-        </div>
-        
-        <div className="stat">
-          <span>CON (Constituição):</span>
-          <span>{statsJogador.con || 0}</span>
-        </div>
-        
-        <div className="stat">
-          <span>WIL (Vontade):</span>
-          <span>{statsJogador.wil || 0}</span>
-        </div>
-        
-        <div className="stat">
-          <span>MND (Mente):</span>
-          <span>{statsJogador.mnd || 0}</span>
-        </div>
-        
-        <div className="stat">
-          <span>SPI (Espírito):</span>
-          <span>{statsJogador.spi || 0}</span>
-        </div>
+        {['STR', 'DEX', 'CON', 'WIL', 'MND', 'SPI'].map((stat) => (
+          <div key={stat} className="stat">
+            <span>{stat} ({stat === 'STR' ? 'Força' : stat === 'DEX' ? 'Destreza' : stat === 'CON' ? 'Constituição' : stat === 'WIL' ? 'Vontade' : stat === 'MND' ? 'Mente' : 'Espírito'}):</span>
+            {editandoStats ? (
+              <input
+                type="number"
+                min="0"
+                max="99"
+                value={statsJogador[stat] || 0}
+                onChange={(e) => handleStatChange(stat, e.target.value)}
+                className="stat-input-small"
+              />
+            ) : (
+              <span className="stat-value">{statsJogador[stat] || 0}</span>
+            )}
+          </div>
+        ))}
       </div>
 
+      {/* Actions */}
       <div className="stat-group">
         <button 
           onClick={onResetView}
@@ -61,12 +99,13 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ onResetView }) => {
         </button>
       </div>
 
+      {/* Tips */}
       <div className="stat-group">
         <label><small>
           💡 Dicas:<br/>
-          • Clique nas skills para desbloquear<br/>
-          • Arraste para mover a visão (pan)<br/>
-          • Use scroll para zoom
+          • Clique em TP para editar<br/>
+          • Clique em ✏️ para editar Stats<br/>
+          • Clique nas skills para desbloquear
         </small></label>
       </div>
     </div>
