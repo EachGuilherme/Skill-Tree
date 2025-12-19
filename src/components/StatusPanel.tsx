@@ -23,7 +23,7 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ onResetView, onReset }
   };
 
   const handleStatChange = (stat: string, valor: string) => {
-    const novoValor = Math.max(0, Math.min(99, parseInt(valor) || 0));
+    const novoValor = Math.max(0, Math.min(9999999, parseInt(valor) || 0));
     setStat(stat, novoValor);
     salvarProgresso();
   };
