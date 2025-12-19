@@ -43,7 +43,7 @@
   transition: all 0.3s ease;
 }
 
-.tier-btn:hover {
+.tier-btn:hover:not(:disabled) {
   background: var(--color-primary);
   border-color: var(--color-success);
   transform: translateX(4px);
@@ -53,6 +53,25 @@
   background: var(--color-success);
   border-color: var(--color-success);
   color: var(--color-bg);
+}
+
+/* 🔴 NOVO: Tier Bloqueado */
+.tier-btn.bloqueado {
+  background: #4a2626;
+  border-color: #c01547;
+  color: #ff6b6b;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.tier-btn.bloqueado:hover {
+  background: #5a3636;
+  border-color: #ff6b6b;
+  transform: none;
+}
+
+.tier-btn:disabled {
+  cursor: not-allowed;
 }
 
 .skill-info {
