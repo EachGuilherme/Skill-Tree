@@ -4,10 +4,12 @@ import { useSkillStore } from './stores/skillStore';
 import type { Skill } from './types';
 import skillsData from './data/skills.json';
 import { SistemaLocks } from './modules/SistemaLocks';
+import { SistemaSave } from './modules/SistemaSave';
 import './styles/globals.css';
 
 function App() {
-  const { desbloquearSkill, setSkills, setTPAtual, skills, statsJogador, tpAtual } = useSkillStore();
+  const { desbloquearSkill, setSkills, setTPAtual, setStat, skills, statsJogador, tpAtual } = useSkillStore();
+  const sistemaSave = new SistemaSave();
 
   useEffect(() => {
     // Carregar dados iniciais
@@ -15,7 +17,26 @@ function App() {
     if (loadedSkills && Array.isArray(loadedSkills)) {
       setSkills(loadedSkills);
     }
-  }, [setSkills]);
+
+    // ✅ Carregador save
+    const save = sistemaSave.carregarProgresso();
+    if (save) {
+      // Restaurar stats
+      Object.entries(save.stats).forEach(([stat, valor]) => {
+        setStat(stat, valor);
+      });
+
+      // Restaurar TP
+      setTPAtual(save.tpAtual);
+
+      // Restaurar skills desbloqueadas
+      const skillsComDesbloqueadas = loadedSkills.map(s => ({
+        ...s,
+        desbloqueada: save.skillsDesbloqueadas.includes(s.id)
+      }));
+      setSkills(skillsComDesbloqueadas);
+    }
+  }, []);
 
   const handleSkillClick = useCallback((skillId: string) => {
     // ✅ Buscar skill do store (state atual)
@@ -26,19 +47,6 @@ function App() {
       alert('❌ Habilidade não encontrada!');
       return;
     }
-
-    // DEBUG: Log do clique
-    console.log('\n🔍 DEBUG CLICK:', {
-      skillId,
-      skillNome: skill.nome,
-      desbloqueada: skill.desbloqueada,
-      custoTP: skill.custoTP,
-      custoStats: skill.custoStats,
-      prereqSkills: skill.prereqSkills,
-      tpAtual,
-      statsJogador,
-      skillsCount: skills.length
-    });
 
     // Se já está desbloqueada, apenas mostrar info
     if (skill.desbloqueada) {
@@ -51,16 +59,8 @@ function App() {
     // ✅ Criar sistema com STATS, TP E ALL SKILLS ATUAIS
     const sistemaLocks = new SistemaLocks(statsJogador, tpAtual, skills);
     
-    // DEBUG: Log do sistema
-    console.log('SistemaLocks verificando:', {
-      podePegar: sistemaLocks.podePegar(skill),
-      motivo: sistemaLocks.getMotivoTranca(skill)
-    });
-    
     // ✅ Verificar se pode desbloquear
     const resultado = sistemaLocks.tentar_desbloquear(skill);
-    
-    console.log('Resultado desbloqueio:', resultado);
     
     if (resultado.sucesso) {
       // Desbloquear skill
@@ -70,10 +70,14 @@ function App() {
       const novoTP = tpAtual - skill.custoTP;
       setTPAtual(novoTP);
       
-      console.log('✅ Skill desbloqueada! Novo TP:', novoTP);
+      // ✅ Salvar progresso
+      const skillsDesbloqueadas = skills
+        .filter(s => s.desbloqueada || s.id === skillId)
+        .map(s => s.id);
+      sistemaSave.salvarProgresso(statsJogador, novoTP, skillsDesbloqueadas);
+      
       alert(resultado.mensagem);
     } else {
-      console.log('❌ Não pode desbloquear:', resultado.mensagem);
       alert(`❌ Não pode desbloquear!\n\n${resultado.mensagem}`);
     }
   }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual]);
