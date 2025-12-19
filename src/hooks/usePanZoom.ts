@@ -22,15 +22,19 @@ export function usePanZoom() {
   // ✅ Iniciar pan com mouse
   const handleMouseDown = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
     setIsPanning(true);
-    setPanStartX(e.clientX - panX);
-    setPanStartY(e.clientY - panY);
-  }, [panX, panY]);
+    setPanStartX(e.clientX);
+    setPanStartY(e.clientY);
+  }, []);
 
   // ✅ Mover durante pan
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!isPanning) return;
-    setPanX(e.clientX - panStartX);
-    setPanY(e.clientY - panStartY);
+    
+    setPanX(prev => prev + (e.clientX - panStartX));
+    setPanY(prev => prev + (e.clientY - panStartY));
+    
+    setPanStartX(e.clientX);
+    setPanStartY(e.clientY);
   }, [isPanning, panStartX, panStartY]);
 
   // ✅ Finalizar pan
@@ -60,6 +64,9 @@ export function usePanZoom() {
     setZoom(1);
     setPanX(0);
     setPanY(0);
+    setPanStartX(0);
+    setPanStartY(0);
+    setIsPanning(false);
   }, []);
 
   return {
