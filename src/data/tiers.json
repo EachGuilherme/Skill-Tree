@@ -36,5 +36,13 @@
     "requisitos": {
       "tpMinimo": 90000
     }
+  },
+  {
+    "numero": 5,
+    "nome": "Divino",
+    "descricao": "Habilidades divinas e absolutas",
+    "requisitos": {
+      "tpMinimo": 150000
+    }
   }
 ]
