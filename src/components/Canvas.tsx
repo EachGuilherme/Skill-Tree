@@ -11,14 +11,14 @@ import { tiers } from '../data';
 interface CanvasProps {
   skills: Skill[]; // Skills com posição (do tier atual)
   allSkills: Skill[]; // Todas as skills para sincronizar SistemaTiers
-  onSkillClick: (skillId: string) => void;
+  onSkillMouseDown: (skillId: string) => void;
   onSkillHover: (skill: Skill | null) => void;
 }
 
 export const Canvas: React.FC<CanvasProps> = ({
   skills,
   allSkills,
-  onSkillClick,
+  onSkillMouseDown,
   onSkillHover,
 }) => {
   const { zoom, panX, panY, handleMouseDown, svgRef } = usePanZoom();
@@ -90,7 +90,7 @@ export const Canvas: React.FC<CanvasProps> = ({
             key={skill.id}
             skill={skill}
             cor={getCorSkill(skill)}
-            onClick={() => onSkillClick(skill.id)}
+            onMouseDown={() => onSkillMouseDown(skill.id)}
             onMouseEnter={() => onSkillHover(skill)}
             onMouseLeave={() => onSkillHover(null)}
           />
