@@ -1,6 +1,8 @@
 import { useEffect, useCallback, useMemo } from 'react';
 import { SkillTree } from './components/SkillTree';
+import { NotificationContainer } from './components/NotificationContainer';
 import { useSkillStore } from './stores/skillStore';
+import { useNotificationStore } from './stores/notificationStore';
 import type { Skill, TierInfo } from './types';
 import { allSkills, tiers } from './data';
 import { SistemaLocks } from './modules/SistemaLocks';
@@ -10,9 +12,10 @@ import './styles/globals.css';
 
 function App() {
   const { desbloquearSkill, setSkills, setTPAtual, setStat, skills, statsJogador, tpAtual } = useSkillStore();
+  const { addNotification } = useNotificationStore();
   const sistemaSave = new SistemaSave();
 
-  // 💯 Criar instãncia do SistemaTiers baseado nas skills atuais
+  // 💯 Criar instância do SistemaTiers baseado nas skills atuais
   const sistemaTiers = useMemo(() => {
     if (!skills || skills.length === 0) {
       return new SistemaTiers([], tiers as TierInfo[]);
@@ -56,21 +59,19 @@ function App() {
     }
   }, []);
 
-  const handleSkillClick = useCallback((skillId: string) => {
+  const handleSkillMouseDown = useCallback((skillId: string) => {
     // ✅ Buscar skill do store (state atual)
     const skill = skills?.find((s: Skill) => s.id === skillId);
     
     // ✅ Checa se skill existe
     if (!skill) {
-      alert('❌ Habilidade não encontrada!');
+      addNotification('❌ Habilidade não encontrada!', 'error');
       return;
     }
 
-    // Se já está desbloqueada, apenas mostrar info
+    // Se já está desbloqueada, apenas mostrar notificação
     if (skill.desbloqueada) {
-      alert(
-        `✅ ${skill.nome}\n\n${skill.descricao}\n\nTier: ${skill.tier}\nCusto: ${skill.custoTP} TP`
-      );
+      addNotification(`✅ ${skill.nome} - Já desbloqueada!`, 'info');
       return;
     }
 
@@ -100,19 +101,22 @@ function App() {
         .map(s => s.id);
       sistemaSave.salvarProgresso(statsJogador, novoTP, skillsDesbloqueadasAtualizadas);
       
-      alert(resultado.mensagem);
+      // 🔔 Notificação de sucesso
+      addNotification(`✅ ${skill.nome} desbloqueada!`, 'success');
     } else {
-      alert(`❌ Não pode desbloquear!\n\n${resultado.mensagem}`);
+      // 🔔 Notificação de erro com motivo
+      addNotification(`❌ ${skill.nome}: ${resultado.mensagem}`, 'error', 4000);
     }
-  }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual, sistemaTiers]);
+  }, [skills, statsJogador, tpAtual, desbloquearSkill, setTPAtual, sistemaTiers, addNotification]);
 
   return (
     <div className="app">
+      <NotificationContainer />
       <header className="app-header">
         <h1>⚔️ Skill Tree - Sistema de Progressão</h1>
       </header>
       <main className="app-main">
-        <SkillTree onSkillClick={handleSkillClick} />
+        <SkillTree onSkillMouseDown={handleSkillMouseDown} />
       </main>
     </div>
   );
